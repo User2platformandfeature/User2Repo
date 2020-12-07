@@ -1,17 +1,13 @@
- version: 2.1
-
- orbs:
-  win: circleci/windows@2.2.0
-
- jobs:
-   build:
-     executor: win/default     
-    
-     steps:
-       - checkout
-       - run: dotnet build
-
-## Custom notifications
-notify:
-  webhooks:
-    -url https://microsoft.webhook.office.com/webhookb2/720d390a-a083-4163-8af4-353551649a7b@72f988bf-86f1-41af-91ab-2d7cd011db47/CircleCI/48066bbff00e4773927b54b52457df4a/decaae79-5e19-4f10-ae7d-8d5adb872884
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+# Use a package of configuration called an orb.
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
+# Orchestrate or schedule a set of jobs
+workflows:
+  # Name the workflow "welcome"
+  welcome:
+    # Run the welcome/run job in its own container
+    jobs:
+      - welcome/run
